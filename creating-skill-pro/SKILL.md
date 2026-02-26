@@ -259,6 +259,9 @@ Example: When building a `big-query` skill to handle queries like "How many user
 
 To establish the skill's contents, analyze each concrete example to create a list of the reusable resources to include: scripts, references, and assets.
 
+- Avoid deeply nested references - Keep references one level deep from SKILL.md. All reference files should link directly from SKILL.md.
+- Structure longer reference files - For reference files longer than 100 lines, include a table of contents at the top so Agent can see the full scope when previewing.
+
 ### Step 3: Initializing the Skill
 
 At this point, it is time to actually create the skill.
