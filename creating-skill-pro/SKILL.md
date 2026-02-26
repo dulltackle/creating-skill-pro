@@ -193,6 +193,8 @@ Solution: [How to fix]
 (Add more error cases as needed)
 ```
 
+See references/example.md for a complete skill example
+
 ### Patterns
 
 Keep SKILL.md body to the essentials and under 500 lines to minimize context bloat. Split content into separate files when approaching this limit. When splitting out content into other files, it is very important to reference them from SKILL.md and describe clearly when to read them, to ensure the reader of the skill knows they exist and when to use them.
