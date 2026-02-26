@@ -1,5 +1,13 @@
 # Patterns Examples
 
+## Table of Contents
+
+- [Pattern 1: Sequential Workflow Orchestration](#pattern-1-sequential-workflow-orchestration)
+- [Pattern 2: Multi-MCP Coordination](#pattern-2-multi-mcp-coordination)
+- [Pattern 3: Iterative Refinement](#pattern-3-iterative-refinement)
+- [Pattern 4: Context-Aware Tool Selection](#pattern-4-context-aware-tool-selection)
+- [Pattern 5: Domain-specific intelligence](#pattern-5-domain-specific-intelligence)
+
 ## Pattern 1: Sequential Workflow Orchestration
 
 Use case: Your user needs to follow a multi-step process in a specific order.

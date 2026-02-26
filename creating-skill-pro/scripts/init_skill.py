@@ -15,72 +15,45 @@ from pathlib import Path
 
 SKILL_TEMPLATE = """---
 name: {skill_name}
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.
-
-## **Rules for effective descriptions:**
-
-- **Always use third person**: "Processes Excel files" (not "I can help you...")
-- **Be specific**: Include both what it does AND when to use it
-- **Include key terms**: Mention trigger words and file formats
-- **Maximum 1024 characters**
-- **Avoid vague descriptions**: "Helps with documents", "Processes data"
-
-Template: Description: [What the Skill does]. Use when [triggers/contexts for activation].
-
-Examples: **Excel Processing:**
-
-```
-description: Analyzes Excel spreadsheets, extracts data, creates charts, and performs calculations. Use when working with Excel files or when the user mentions spreadsheets or .xlsx files.
-```
-
-Delete this entire "Rules for effective descriptions" section when done - it's just guidance.]
+description: "TODO: Replace with a specific description of what this skill does and when to use it."
 ---
 
 # {skill_title}
 
 ## Overview
 
-[TODO: 1-2 sentences explaining what this skill enables]
+[TODO: 1-2 sentences describing the capability this skill adds.]
 
-## Structuring This Skill
+## Instructions
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+### Step 1: Understand the request
+[TODO: List what to inspect, ask, or verify before acting.]
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" → "Reading" → "Creating" → "Editing"
-- Structure: ## Overview → ## Workflow Decision Tree → ## Step 1 → ## Step 2...
+### Step 2: Execute the core workflow
+[TODO: Add the main workflow. Prefer explicit steps for fragile tasks.]
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" → "Merge PDFs" → "Split PDFs" → "Extract Text"
-- Structure: ## Overview → ## Quick Start → ## Task Category 1 → ## Task Category 2...
+### Step 3: Validate the result
+[TODO: Add checks/tests/verification steps.]
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" → "Colors" → "Typography" → "Features"
-- Structure: ## Overview → ## Guidelines → ## Specifications → ## Usage...
+## Examples
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" → numbered capability list
-- Structure: ## Overview → ## Core Capabilities → ### 1. Feature → ### 2. Feature...
+Example 1: [common scenario]
+User says: "Set up a new marketing campaign"
+Actions:
+Fetch existing campaigns via MCP
+Create new campaign with provided parameters
+Result: Campaign created with confirmation link
+(Add more examples as needed)
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+## Troubleshooting
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+Error: [Common error message]
+Cause: [Why it happens]
+Solution: [How to fix]
 
-## [TODO: Replace with the first main section based on chosen structure]
-
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+(Add more error cases as needed)
 
 ## Resources
-
-This skill includes example resource directories that demonstrate how to organize different types of bundled resources:
 
 ### scripts/
 Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
@@ -115,14 +88,9 @@ Files not intended to be loaded into context, but rather used within the output 
 
 EXAMPLE_SCRIPT = '''#!/usr/bin/env python3
 """
-Example helper script for {skill_name}
+Placeholder script for {skill_name}
 
-This is a placeholder script that can be executed directly.
-Replace with actual implementation or delete if not needed.
-
-Example real scripts from other skills:
-- pdf/scripts/fill_fillable_fields.py - Fills PDF form fields
-- pdf/scripts/convert_pdf_to_images.py - Converts PDF pages to images
+Replace with real logic or delete this file if no script is needed.
 """
 
 def main():
@@ -134,65 +102,20 @@ if __name__ == "__main__":
     main()
 '''
 
-EXAMPLE_REFERENCE = """# Reference Documentation for {skill_title}
+EXAMPLE_REFERENCE = """# {skill_title} Reference
 
-This is a placeholder for detailed reference documentation.
-Replace with actual reference content or delete if not needed.
+Replace with task-specific reference material or delete this file.
 
-Example real reference docs from other skills:
-- product-management/references/communication.md - Comprehensive guide for status updates
-- product-management/references/context_building.md - Deep-dive on gathering context
-- bigquery/references/ - API references and query examples
-
-## When Reference Docs Are Useful
-
-Reference docs are ideal for:
-- Comprehensive API documentation
-- Detailed workflow guides
-- Complex multi-step processes
-- Information too lengthy for main SKILL.md
-- Content that's only needed for specific use cases
-
-## Structure Suggestions
-
-### API Reference Example
-- Overview
-- Authentication
-- Endpoints with examples
-- Error codes
-- Rate limits
-
-### Workflow Guide Example
-- Prerequisites
-- Step-by-step instructions
-- Common patterns
-- Troubleshooting
-- Best practices
+Suggested uses:
+- API endpoints / schemas
+- Command cheatsheets
+- Decision tables
+- Detailed workflow notes
 """
 
 EXAMPLE_ASSET = """# Example Asset File
 
-This placeholder represents where asset files would be stored.
-Replace with actual asset files (templates, images, fonts, etc.) or delete if not needed.
-
-Asset files are NOT intended to be loaded into context, but rather used within the output Agent produces.
-
-Example asset files from other skills:
-- Brand guidelines: logo.png, slides_template.pptx
-- Frontend builder: hello-world/ directory with HTML/React boilerplate
-- Typography: custom-font.ttf, font-family.woff2
-- Data: sample_data.csv, test_dataset.json
-
-## Common Asset Types
-
-- Templates: .pptx, .docx, boilerplate directories
-- Images: .png, .jpg, .svg, .gif
-- Fonts: .ttf, .otf, .woff, .woff2
-- Boilerplate code: Project directories, starter files
-- Icons: .ico, .svg
-- Data files: .csv, .json, .xml, .yaml
-
-Note: This is a text placeholder. Actual assets can be any file type.
+Replace with a real asset (template/image/font/etc.) or delete this file.
 """
 
 
@@ -284,7 +207,7 @@ def main():
     if len(sys.argv) < 4 or sys.argv[2] != '--path':
         print("Usage: python3 ./scripts/init_skill.py <skill-name> --path <skill-folder-path>")
         print("\nSkill name requirements:")
-        print("  - Hyphen-case identifier (e.g., 'data-analyzer')")
+        print("  - Hyphen-case identifier (e.g., 'creating-pdf')")
         print("  - Lowercase letters, digits, and hyphens only")
         print("  - Max 64 characters")
         print("  - Use gerund form (verb + -ing)")

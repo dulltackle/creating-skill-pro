@@ -4,7 +4,6 @@ Quick validation script for skills - minimal version
 """
 
 import sys
-import os
 import re
 import yaml
 from pathlib import Path
@@ -20,23 +19,15 @@ def validate_skill(skill_path):
 
     # Validate skill folder exists
     if not skill_path.exists():
-        print(f"❌ Error: Skill folder not found: {skill_path}")
-        return None
+        return False, f"Skill folder not found: {skill_path}"
 
     if not skill_path.is_dir():
-        print(f"❌ Error: Path is not a directory: {skill_path}")
-        return None
+        return False, f"Path is not a directory: {skill_path}"
 
     # Validate SKILL.md exists
     skill_md = skill_path / "SKILL.md"
     if not skill_md.exists():
-        print(f"❌ Error: SKILL.md not found in {skill_path}")
-        return None
-
-    # Check SKILL.md exists
-    skill_md = skill_path / 'SKILL.md'
-    if not skill_md.exists():
-        return False, "SKILL.md not found"
+        return False, f"SKILL.md not found in {skill_path}"
 
     # Read and validate frontmatter
     content = skill_md.read_text()
@@ -58,7 +49,7 @@ def validate_skill(skill_path):
     except yaml.YAMLError as e:
         return False, f"Invalid YAML in frontmatter: {e}"
 
-    # Define allowed properties
+    # Define allowed properties (required: name, description)
     ALLOWED_PROPERTIES = {'name', 'description', 'license', 'allowed-tools', 'metadata'}
 
     # Check for unexpected properties (excluding nested keys under metadata)

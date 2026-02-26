@@ -58,10 +58,15 @@ skill-name/
 
 SKILL.md is an overview that points to detailed materials as needed. Every SKILL.md consists of:
 
-- **Frontmatter** (YAML): Contains `name` and `description` fields. These are the only fields that Agent reads to determine when the skill gets used, thus it is very important to be clear and comprehensive in describing what the skill is, and when it should be used.
+- **Frontmatter** (YAML): Must include `name` and `description`. These are the only fields that Agent reads to determine when the skill gets used, thus it is very important to be clear and comprehensive in describing what the skill is, and when it should be used. (Other optional metadata fields may be present for tooling/packaging, but they are not used for triggering.)
   - **name** (required):
     - Use kebab-case only
     - No spaces or uppercase
+    - Lowercase letters, digits, and hyphens only
+    - Cannot start/end with `-` or contain consecutive hyphens (`--`)
+    - Maximum 64 characters
+    - Use gerund form (verb + `-ing`) for the first segment (e.g., `creating-pdf`)
+    - Do not use reserved words/segments such as `anthropic` or `claude`
     - Should match the folder name
   - **description** (required):
     - Must include both:
@@ -312,7 +317,7 @@ Any example files and directories not needed for the skill should be deleted. Th
 
 ##### Frontmatter
 
-Write the YAML frontmatter with `name` and `description`:
+Write the YAML frontmatter with required `name` and `description`:
 
 - `name`: The skill name
 - `description`: This is the primary triggering mechanism for your skill, and helps Agent understand when to use the skill.
@@ -320,7 +325,9 @@ Write the YAML frontmatter with `name` and `description`:
   - Include all "when to use" information here - Not in the body. The body is only loaded after triggering, so "When to Use This Skill" sections in the body are not helpful to Agent.
   - Example description for a `docx` skill: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. Use when Agent needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks"
 
-Do not include any other fields in YAML frontmatter.
+Optional frontmatter fields may be included when needed for tooling compatibility: `metadata`, `license`, and `allowed-tools`.
+
+Do not include any other frontmatter fields beyond: `name`, `description`, `metadata`, `license`, and `allowed-tools`.
 
 ##### Body
 
@@ -380,12 +387,13 @@ Once development of the skill is complete, it must be validated to ensure it mee
 python3 scripts/quick_validate.py <path/to/skill-folder>
 ```
 
-- YAML frontmatter format and required fields
-- Skill naming conventions and directory structure
-- Description completeness and quality
-- File organization and resource references
+- YAML frontmatter format and allowed/required top-level fields
+- Skill naming conventions and directory-name match
+- Description format constraints (string type, no angle brackets, max 1024 chars)
+- Basic schema/syntax checks for quick validation before deeper manual review
 
 Ensure all validation checks pass before proceeding.
+Note: `quick_validate.py` is a quick validator. It does not judge body quality, verify resource usefulness, or confirm `references/` are cited correctly.
 
 ### Step 7: Packaging the skill if user requests
 
