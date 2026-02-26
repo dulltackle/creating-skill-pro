@@ -271,9 +271,10 @@ Skill creation involves these steps:
 2. Plan reusable skill contents (scripts, references, assets)
 3. Initialize the skill (run ./scripts/init_skill.py)
 4. Edit the skill (write SKILL.md and implement resources as needed)
-5. Validate the skill (run ./scripts/quick_validate.py)
-6. Packaging the Skill if user requests it (run ./scripts/package_skill.py)
-7. Iterate based on real usage
+5. Final Check (verify against quality checklist)
+6. Validate the skill (run ./scripts/quick_validate.py)
+7. Packaging the Skill if user requests it (run ./scripts/package_skill.py)
+8. Iterate based on real usage
 
 Follow these steps in order, skipping only if there is a clear reason why they are not applicable.
 
