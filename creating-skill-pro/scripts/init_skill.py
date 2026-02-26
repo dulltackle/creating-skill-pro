@@ -25,15 +25,9 @@ description: [TODO: Complete and informative explanation of what the skill does 
 - **Maximum 1024 characters**
 - **Avoid vague descriptions**: "Helps with documents", "Processes data"
 
-**Template:**
+Template: Description: [What the Skill does]. Use when [triggers/contexts for activation].
 
-```
-Description: [What the Skill does]. Use when [triggers/contexts for activation].
-```
-
-**Examples:**
-
-**Excel Processing:**
+Examples: **Excel Processing:**
 
 ```
 description: Analyzes Excel spreadsheets, extracts data, creates charts, and performs calculations. Use when working with Excel files or when the user mentions spreadsheets or .xlsx files.

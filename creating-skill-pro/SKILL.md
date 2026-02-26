@@ -1,5 +1,5 @@
 ---
-name: creating-skill
+name: creating-skill-pro
 description: Guide for creating effective skills. Use when users want to create a new skill (or update an existing skill) that extends Agent's capabilities with specialized knowledge, workflows, or tool integrations.
 ---
 
@@ -59,6 +59,18 @@ skill-name/
 SKILL.md is an overview that points to detailed materials as needed. Every SKILL.md consists of:
 
 - **Frontmatter** (YAML): Contains `name` and `description` fields. These are the only fields that Agent reads to determine when the skill gets used, thus it is very important to be clear and comprehensive in describing what the skill is, and when it should be used.
+  - **name** (required):
+    - Use kebab-case only
+    - No spaces or uppercase
+    - Should match the folder name
+  - **description** (required):
+    - Must include both:
+      - What the skill does
+      - When to use it (trigger conditions)
+    - Under 1024 characters
+    - No XML tags (< or >)
+    - Include specific tasks the user might say
+    - Mention file types if relevant
 - **Body** (Markdown): Instructions and guidance for using the skill. Only loaded AFTER the skill triggers (if at all).
 - **Keep SKILL.md under 500 lines**: split content into separate files when approaching this limit.
 
@@ -125,13 +137,69 @@ Skills use a three-level loading system to manage context efficiently:
 2. **SKILL.md body** - When skill triggers (<5k words)
 3. **Bundled resources** - As needed by Agent (Unlimited because scripts can be executed without reading into context window)
 
-#### Patterns
+#### The `description` Field
+
+`description` provides enough signal for agent to know when it should use each skill, without needing to load everything into context."
+
+**Structure**: [What it does] + [When to use] + [Key capabilities]
+
+##### **Good Description Examples**:
+
+- Good - Specific and Actionable
+  - description: Analyzes Figma design files and generates developer handoff documentation. Use when user uploads .fig files, asks for "design specs", "component documentation", or "design-to-code handoff".
+- Good - Includes Trigger Phrases
+  - description: Manages Linear project workflows including sprint planning, task creation, and status tracking. Use when user mentions "sprint", "Linear tasks", "project planning", or asks to "create tickets".
+
+##### **Bad Description Examples**:
+
+- Too Vague
+  - description: Helps with projects.
+- Missing Trigger Words
+  - description: Creates sophisticated multi-page documentation systems.
+- Too Technical, No User Triggers
+  - description: Implements the Project entity model with hierarchical relationships.
+
+#### The recommended `body` Field
+
+```md
+# Your Skill Name
+
+## Instructions
+
+### Step 1: [First Major Step]
+
+Clear explanation of what happens.
+Example:
+python scripts/fetch_data.py --project-id PROJECT_ID
+Expected output: [describe what success looks like]
+(Add more steps as needed)
+
+## Examples
+
+Example 1: [common scenario]
+User says: "Set up a new marketing campaign"
+Actions:
+Fetch existing campaigns via MCP
+Create new campaign with provided parameters
+Result: Campaign created with confirmation link
+(Add more examples as needed)
+
+## Troubleshooting
+
+Error: [Common error message]
+Cause: [Why it happens]
+Solution: [How to fix]
+
+(Add more error cases as needed)
+```
+
+### Patterns
 
 Keep SKILL.md body to the essentials and under 500 lines to minimize context bloat. Split content into separate files when approaching this limit. When splitting out content into other files, it is very important to reference them from SKILL.md and describe clearly when to read them, to ensure the reader of the skill knows they exist and when to use them.
 
 **Key principle:** When a skill supports multiple variations, frameworks, or options, keep only the core workflow and selection guidance in SKILL.md. Move variant-specific details (patterns, examples, configuration) into separate reference files.
 
-##### Patterns Examples
+#### Patterns Examples
 
 - **Pattern 1: High-level guide with references**
 
